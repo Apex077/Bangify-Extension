@@ -1,0 +1,45 @@
+{
+    "manifest_version": 2,
+    "name": "Custom Bangs",
+    "version": "1.1",
+    "description": "Customize your own bangs!",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "activeTab",
+        "*://www.google.com/*"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.google.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "48": "icons/icon-48.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon-16.png",
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
+    "applications": {
+        "gecko": {
+            "id": "bangify@example.com"
+        }
+    }
+}
