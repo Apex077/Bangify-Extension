@@ -11,16 +11,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const customBangs = data.customBangs || {};
             bangList.innerHTML = "";
 
+            const noBangsMsg = document.getElementById("no-bangs-msg");
+            const hasBangs = Object.keys(customBangs).length > 0;
+            noBangsMsg.style.display = hasBangs ? "none" : "block";
+
             for (const [bang, url] of Object.entries(customBangs)) {
                 const li = document.createElement("li");
-                li.innerHTML = `<strong>${bang}</strong> → ${url} 
-                          <button class="delete" data-bang="${bang}">❌</button>`;
+                li.innerHTML = `<strong>${bang}</strong> → ${url}
+                    <button class="delete" data-bang="${bang}" title="Delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="delete-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>`;
                 bangList.appendChild(li);
             }
 
             document.querySelectorAll(".delete").forEach((btn) => {
                 btn.addEventListener("click", (e) => {
-                    const bangToRemove = e.target.dataset.bang;
+                    const bangToRemove = e.target.closest("button").dataset.bang;
                     delete customBangs[bangToRemove];
                     browser.storage.sync.set({ customBangs }).then(loadBangs);
                 });
