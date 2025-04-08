@@ -135,3 +135,47 @@ button.delete .delete-icon {
 #toggle-theme:hover {
   background-color: var(--card-bg);
 }
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+li.empty-msg {
+  font-style: italic;
+  color: #888;
+  background: none;
+  padding: 0;
+  margin: 6px 0;
+}
+
+.bang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bang-key {
+  flex-shrink: 0;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.bang-url {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+  font-size: 13px;
+}
